@@ -17,7 +17,7 @@ public class Mute implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
-		String name = "";
+		String name = sender.getName();
 		
 		if (!PlayerMeta.isOp(sender)) {
 			sender.sendMessage("§cYou can't use this.");
@@ -28,9 +28,7 @@ public class Mute implements CommandExecutor {
 			sender.sendMessage("§cInvalid syntax. Syntax: /mute <perm/temp/none/all> [player]");
 			return true;
 		}
-		
-		if(sender instanceof Player) { name = ((Player)sender).getName(); }
-		else { name = "CONSOLE"; }
+
 
 		String mode = args[0];
 		if (mode.equals("all")) {

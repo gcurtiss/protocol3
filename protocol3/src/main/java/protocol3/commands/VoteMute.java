@@ -141,6 +141,10 @@ public class VoteMute implements CommandExecutor {
 		else {
 			previousIpVotes = new ArrayList<UUID>();
 		}
+		if (((Player) sender).getUniqueId().toString().equals(toMute.getUniqueId().toString())) {
+			sender.spigot().sendMessage(new TextComponent("§cI don't think its a good idea to vote mute yourself."));
+			return true;
+		}
 
 		// If our candidate has been voted on before
 		if (_votes.containsKey(toMute.getUniqueId())) {
@@ -175,10 +179,7 @@ public class VoteMute implements CommandExecutor {
 						"§cServer must wait " + (cooldown / 20) + " more seconds to vote mute again."));
 				return true;
 			}
-			if (((Player) sender).getUniqueId().toString().equals(toMute.getUniqueId().toString())) {
-				sender.spigot().sendMessage(new TextComponent("§cI don't think its a good idea to vote mute yourself."));
-				return true;
-			}
+
 			_votes.put(toMute.getUniqueId(), 1);
 			previousVotes.add(toMute.getUniqueId());
 			_voters.put(voter.getUniqueId(), previousVotes);
