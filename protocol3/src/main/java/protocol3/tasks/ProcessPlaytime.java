@@ -101,7 +101,7 @@ public class ProcessPlaytime extends TimerTask {
 		}
 		
 		// Minute
-		if(System.currentTimeMillis() - lastMinute >= 60000) {
+		if(System.currentTimeMillis() - lastMinute >= 0) {
 			lastMinute = System.currentTimeMillis();
 			AntiSpam.lastChatMessages.clear();
 			Beat.canBeat = true;
